@@ -1,19 +1,15 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  background-color: #282c34;
+  color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -22,11 +18,33 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Sort-Button {
+  width: 16vmin;
+  height: 7vmin;
+  cursor: context-menu;
+
+  background: white;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.1s;
+}
+
+.Sort-Button-Disabled {
+  width: 16vmin;
+  height: 7vmin;
+  cursor: context-menu;
+
+  background: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.Sort-Button:hover {
+  width: 17vmin;
+  height: 8vmin;
+
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+.Sort-Button:active {
+  box-shadow: 1px 1px black;
 }
