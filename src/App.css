@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   background-color: #282c34;
@@ -18,10 +17,21 @@
   color: #61dafb;
 }
 
+.Array-Number{
+  font-size: 2em;
+  color: white;
+  transition: color 0.1s ease-in-out, top 0.4s ease-in-out, text-shadow 0.4s ease-in-out;
+}
+
+/* .Array-Number:hover{
+  adding-bottom: -2em;
+} */
+
 .Sort-Button {
-  width: 16vmin;
-  height: 7vmin;
-  cursor: context-menu;
+  width: 7em;
+  height: 3em;
+  font-size: 0.75em;
+  cursor: pointer;
 
   background: white;
   border: none;
@@ -30,20 +40,25 @@
 }
 
 .Sort-Button-Disabled {
-  width: 16vmin;
-  height: 7vmin;
-  cursor: context-menu;
+  width: 7em;
+  height: 3em;
+  font-size: 0.75em;
+  cursor: pointer;
+  pointer-events: none;
 
-  background: white;
+  background: gray;
   border: none;
   border-radius: 8px;
 }
 
 .Sort-Button:hover {
-  width: 17vmin;
-  height: 8vmin;
+  width: 7em;
+  height: 3em;
+  font-size: 0.85em;
 
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+  /* box-shadow: 0 4px 1px grey; */
 }
 .Sort-Button:active {
   box-shadow: 1px 1px black;

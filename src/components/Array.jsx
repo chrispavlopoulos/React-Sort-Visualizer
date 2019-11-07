@@ -1,27 +1,48 @@
 import React, { Component } from "react";
 import ListItem from './ListItem.jsx';
+import { vw, vh } from '../utils/viewport-helper.jsx'
 
 const itemId = "ListItem-"
 
 class Array extends Component{
 
     state = {
-        listItems: [],
+        
     }
 
     constructor(props){
         super(props)
     }
 
+    componentDidMount() {
+        window.addEventListener('resize', this.resize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.resize);
+      }
+    
+      resize = () =>{
+        if(this.state.vWidth !== window.innerWidth || this.state.height !== window.innerHeight){
+          this.setState({vWidth: window.innerWidth, vHeight: window.innerHeight,});
+          this.forceUpdate();
+        }
+      }
+
     render() {
         
-        var {array, selectedIdxOne, selectedIdxTwo} = this.props;
-        var listItems = []
+        var {array, selectedIdxOne, selectedIdxTwo, selectedIdxThree} = this.props;
+        var length = array.length
+        var marginLeft = vw(50) - (Math.max(25, vw(4)) * length / 2 - vw(1))
         return (
             <div>
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                <div style={{cursor: "context-menu"}}>
+                {/*style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>*/}
                     {array.map((number, i) => 
-                        this.renderItem(listItems, number, i, i === selectedIdxOne? "darkcyan": i === selectedIdxTwo? "red": "white")
+                        this.renderItem(number, marginLeft, i, 
+                            i === selectedIdxOne? "darkcyan":
+                            i === selectedIdxTwo? "red":
+                            i === selectedIdxThree? "yellow":  "white")
                     )}
                 </div>
             </div>
@@ -29,21 +50,23 @@ class Array extends Component{
         )
     }
 
-    renderItem = (listItems, number, i, color) =>{
-        var left = 20 * i;
-        var listItem = <ListItem key={itemId + i} id={itemId + i} number={number} left={left} color={color}/>
-        listItems.push(listItem)
+    renderItem = (number, marginLeft, i, color) =>{
+        var {swapI, swapJ, sorting} = this.props;
 
-        if(i === this.props.array.length - 1 && listItems.length !== this.state.listItems.length){
-            this.state.listItems = listItems
+        var left = Math.max(25, vw(4)) * i
+        var top = vh(20)
+        if(swapI == i || swapJ == i){
+            top -= vh(5)
         }
+
+        var listItem = <ListItem key={itemId + i} id={itemId + i} number={number} 
+        marginLeft={marginLeft} left={left} top={top} color={color} sorting={sorting}/>
+        
 
         return listItem
     }
 
-    getItem = (i) =>{
-        return this.state.listItems[i]
-    }
+
 }
 
 export default Array;
